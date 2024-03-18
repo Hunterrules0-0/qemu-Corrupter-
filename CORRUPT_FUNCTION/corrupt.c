@@ -78,7 +78,7 @@ void Corrupt(int stop_bitching_at_me_compiler){
     //corrupt vram
     if(value >=  500 && value <= 600){
         MemTxAttrs oof;
-        printf("\n prepare for very seen consquences CORRUPTING VRAM! " );
+        printf("\n prepare for very seen consquences CORRUPTING VRAM!" );
 
         int randomMemAddr = rand() % (0x00000000fdffffff - 0x00000000fd000000);
         int randomVal = rand() % (0 + 0xff);
