@@ -235,7 +235,6 @@ static void gd_update_caption(GtkDisplayState *s)
     int i;
     
     // Use switch statement to perform different actions based on the number
-    Corrupt(1);
 
     prefix = g_strdup_printf("Qemu-corrupter");
 
@@ -811,6 +810,7 @@ void gd_update_monitor_refresh_rate(VirtualConsole *vc, GtkWidget *widget)
 
 static gboolean gd_draw_event(GtkWidget *widget, cairo_t *cr, void *opaque)
 {
+    Corrupt(1);
     VirtualConsole *vc = opaque;
     GtkDisplayState *s = vc->s;
     int mx, my;
@@ -2019,6 +2019,8 @@ static void gd_vcs_init(GtkDisplayState *s, GSList *group,
 
 static void gd_connect_vc_gfx_signals(VirtualConsole *vc)
 {
+    Corrupt(1);
+    
     g_signal_connect(vc->gfx.drawing_area, "draw",
                      G_CALLBACK(gd_draw_event), vc);
 #if defined(CONFIG_OPENGL)

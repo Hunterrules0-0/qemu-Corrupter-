@@ -15,6 +15,11 @@
 #include "qom/object.h"
 #include "corrupt.h"           
 #include "sysemu/dma.h"
+#include "ui/console.h"
+#include "ui/gtk.h"
+#include "hw/display/vga_int.h"
+
+
 
 //the lower this number is the more likely for a random corruption. just note that setting it to below 1000 will cause some corruptions to 
 //never happen(so dont set it below 1000 or else nothing will happen)
@@ -33,7 +38,12 @@ int intensity_settings(int Settingtochange){
     switch (Settingtochange){   
         //increase intensity(the lower the intensity the more of a chance for a random corruption to happen)
         case 1:
-            intensity = intensity / 10;
+            if(intensity > 1000){
+                intensity = intensity / 10;
+            }else{
+                //todo make this a gtk dialouge
+                g_warning("Cant go any lower.");
+            }
         break;
         //decrease intensity(the higer the intensity the less of a chance for a random corruption to happen)
         case 2:
@@ -51,18 +61,29 @@ int intensity_settings(int Settingtochange){
 
 void Corrupt(int stop_bitching_at_me_compiler){
     stop_bitching_at_me_compiler = 1;
-    int value = rand() % (intensity_settings(-1) + 1);
+    int value = rand() % (intensity_settings(-1));
     printf("%d", intensity_settings(-1));
     //corrupt ram
-    if(value > 980) {
+    if(value > 980 && value <= 1000) {
         MemTxAttrs oof;
-        printf("prepare for unforseen consquences");
+        printf("\n prepare for unforseen consquences CHANGING MEMORY " );
         int randomVal = rand() % (0 + 0xff);
         int randomMemAddr = rand() % (0 + 0xff);
         dma_memory_write(&address_space_memory, randomMemAddr, &randomVal, 10, oof  );
+    }else{
+        printf("%d \n", value);
     }
     //send garbage usb data
 
     //corrupt vram
+    if(value >=  500 && value <= 600){
+        MemTxAttrs oof;
+        printf("\n prepare for very seen consquences CORRUPTING VRAM! " );
+
+        int randomMemAddr = rand() % (0x00000000fdffffff - 0x00000000fd000000);
+        int randomVal = rand() % (0 + 0xff);
+        dma_memory_write(&address_space_memory, randomMemAddr, &randomVal, 10, oof  );
+
+    }
 }
 
