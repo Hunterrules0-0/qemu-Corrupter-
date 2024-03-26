@@ -1318,7 +1318,7 @@ static uint64_t unassigned_mem_read(void *opaque, hwaddr addr,
 static void unassigned_mem_write(void *opaque, hwaddr addr,
                                  uint64_t val, unsigned size)
 {
-printf("Unassigned mem write " HWADDR_FMT_plx " = 0x%"PRIx64"\n", addr, val);
+printf("We tried to corrupt this address however its out of the memory range(it dose not exist). this usally means you set to little memory. try setting more memory with -m 1g(set to whatever you want)" HWADDR_FMT_plx " = 0x%"PRIx64"\n", addr, val);
 }
 
 static bool unassigned_mem_accepts(void *opaque, hwaddr addr,

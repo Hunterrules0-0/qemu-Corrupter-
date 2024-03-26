@@ -62,28 +62,29 @@ int intensity_settings(int Settingtochange){
 void Corrupt(int stop_bitching_at_me_compiler){
     stop_bitching_at_me_compiler = 1;
     int value = rand() % (intensity_settings(-1));
-    printf("%d", intensity_settings(-1));
     //corrupt ram
-    if(value > 980 && value <= 1000) {
+    if(value > 900 && value <= 1000) {
         MemTxAttrs oof;
         printf("\n prepare for unforseen consquences CHANGING MEMORY " );
         int randomVal = rand() % (0 + 0xff);
-        int randomMemAddr = rand() % (0 + 0xff);
-        dma_memory_write(&address_space_memory, randomMemAddr, &randomVal, 10, oof  );
-    }else{
-        printf("%d \n", value);
-    }
-    //send garbage usb data
+        int randomMemAddr = rand() % (0 + 999999);
+        unsigned size = sizeof(randomVal);
 
-    //corrupt vram
-    if(value >=  500 && value <= 600){
-        MemTxAttrs oof;
+        dma_memory_write(&address_space_memory, randomMemAddr, &randomVal, size, oof  );
+    }
+
+    //corrupt vram. this shits never going to work correctly so just pretend it dose not exist
+
+    /*if(value >=  500 && value <= 550){
         printf("\n prepare for very seen consquences CORRUPTING VRAM!" );
+        for(int count = 0; count <= 100; count++){
+            int randomMemAddr = rand() % (0 + 99999999999);
+            int randomVal = rand() % (0 + 0xff);
+            unsigned size = sizeof(randomVal);
 
-        int randomMemAddr = rand() % (0x00000000fdffffff - 0x00000000fd000000);
-        int randomVal = rand() % (0 + 0xff);
-        dma_memory_write(&address_space_memory, randomMemAddr, &randomVal, 10, oof  );
-
-    }
+            printf("%d \n", randomMemAddr);
+            vga_mem_writeb(*VGACommonState, randomMemAddr, randomVal, size);
+       } */
+ //} 
 }
 

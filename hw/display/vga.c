@@ -2082,7 +2082,7 @@ static uint64_t vga_mem_read(void *opaque, hwaddr addr,
     return vga_mem_readb(s, addr);
 }
 
-static void vga_mem_write(void *opaque, hwaddr addr,
+void vga_mem_write(void *opaque, hwaddr addr,
                           uint64_t data, unsigned size)
 {
     VGACommonState *s = opaque;

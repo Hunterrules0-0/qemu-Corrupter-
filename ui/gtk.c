@@ -2124,7 +2124,7 @@ static GtkWidget *gd_create_menu_machine(GtkDisplayState *s)
     s->reset_item = gtk_menu_item_new_with_mnemonic(_("_Reset"));
     gtk_menu_shell_append(GTK_MENU_SHELL(machine_menu), s->reset_item);
 
-    s->corrupt = gtk_menu_item_new_with_mnemonic(_("increase corruption _intensity"));
+    s->corrupt = gtk_menu_item_new_with_mnemonic(_("Increase Corruption _intensity"));
     gtk_menu_shell_append(GTK_MENU_SHELL(machine_menu), s->corrupt);
 
     s->powerdown_item = gtk_menu_item_new_with_mnemonic(_("Power _Down"));
