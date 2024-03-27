@@ -10,6 +10,7 @@ machine tab on the gui that allows you to directly increase the corruption inten
 Because its fun. 
 
 #How powerful is it?
+well just see for yourself
 ![fab25cc0f5b84995](https://github.com/Hunterrules0-0/qemu-Corrupter-/assets/95697986/b3d3cec1-9431-4752-8fbd-63222c7d0240)
 
 If you have any issues use the pull request tab as a issue tab if you want. 
